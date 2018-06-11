@@ -21,7 +21,7 @@ const usersListReduser = (state = initialState, action) => {
             stateToDeleteUser.loader = false;
             return stateToDeleteUser;
 
-        case actionTypes.ADDUSER:
+        case actionTypes.ADDUSER:  
         const stateToAddUser = {...state};
         stateToAddUser.users = {...stateToAddUser.users, [action.id]: action.data}
         return stateToAddUser;
