@@ -4,7 +4,7 @@ import axios from '../../axios.js';
 import Loader from '../Loader/Loader';
 import withErrorHandler from '../../Hoc/withErrorHandler';
 import {Helmet} from 'react-helmet';
-import bootstrap from '../../scss/bootstrap.scss';
+import bootstrap from '../../assets/scss/bootstrap.scss';
 
 class UserList extends Component {
 	  state = {

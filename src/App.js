@@ -5,7 +5,7 @@ import Loadable from 'react-loadable';
 import { Container, Row, Col } from 'reactstrap';
 import { Switch, Route } from 'react-router-dom';
 
-import Bootstrap from './scss/bootstrap.scss';
+import Bootstrap from './assets/scss/bootstrap.scss';
 
 import Loader from './Components/Loader/Loader';
 import Header from './Components/Header/Header';

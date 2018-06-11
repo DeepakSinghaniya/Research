@@ -4,7 +4,7 @@ import axios from '../../axios';
 import Loader from '../Loader/Loader';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import withErrorHandler from '../../Hoc/withErrorHandler';
-import bootstrap from '../../scss/bootstrap.scss';
+import bootstrap from '../../assets/scss/bootstrap.scss';
 import {Helmet} from 'react-helmet';
 
 

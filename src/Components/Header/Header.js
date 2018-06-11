@@ -2,7 +2,7 @@ import React from 'react';
 import logo from '../../logo.svg';
 import { Navbar, Nav, NavItem } from 'reactstrap';
 import {Link} from 'react-router-dom';
-import bootstrap from '../../scss/bootstrap.scss';
+import bootstrap from '../../assets/scss/bootstrap.scss';
 
 const header = props => (
     <header>

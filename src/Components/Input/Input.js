@@ -1,6 +1,6 @@
 import React from 'react';
 import classes from './Input.scss';
-import bootstrap from '../../scss/bootstrap.scss';
+import bootstrap from '../../assets/scss/bootstrap.scss';
 
 
 const input = (props) => {

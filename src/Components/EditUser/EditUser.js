@@ -4,7 +4,7 @@ import axios from '../../axios';
 import Loader from '../Loader/Loader';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import withErrorHandler from '../../Hoc/withErrorHandler';
-import bootstrap from '../../scss/bootstrap.scss';
+import bootstrap from '../../assets/scss/bootstrap.scss';
 import {Helmet} from 'react-helmet';
 
 
@@ -177,7 +177,7 @@ class EditUser extends Component {
                         <title>Edit User</title>
                     </Helmet>
                     {form}
-            <Loader show={this.state.loader} />,
+            <Loader show={this.state.loader} />
             <Modal cssModule={bootstrap} isOpen={this.state.modal} toggle={this.modalToggle}>
             <ModalHeader cssModule={bootstrap} toggle={this.modalToggle}>Successfully updated</ModalHeader>
             <ModalBody cssModule={bootstrap}>
