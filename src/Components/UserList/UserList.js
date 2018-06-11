@@ -3,7 +3,9 @@ import { Table } from 'reactstrap';
 import axios from '../../axios.js';
 import Loader from '../Loader/Loader';
 import withErrorHandler from '../../Hoc/withErrorHandler';
-import { withRouter } from 'react-router'
+import { withRouter } from 'react-router';
+
+import bootstrap from '../../scss/bootstrap.scss';
 
 class UserList extends Component {
 	  state = {
@@ -47,7 +49,7 @@ class UserList extends Component {
 	render(){
 	return(
 	<div>
-		<Table cssModule={this.props.bootstrapModule}>
+		<Table cssModule={bootstrap}>
             <thead>
               <tr>
                 <th>Name</th>
