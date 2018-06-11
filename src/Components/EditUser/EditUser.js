@@ -5,6 +5,7 @@ import Loader from '../Loader/Loader';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import withErrorHandler from '../../Hoc/withErrorHandler';
 import bootstrap from '../../scss/bootstrap.scss';
+import {Helmet} from 'react-helmet';
 
 
 class EditUser extends Component {
@@ -155,7 +156,7 @@ class EditUser extends Component {
                 config: this.state.formConfig[key]
             });
         }
-        let form = ([ <form key="formElement" onSubmit={this.editUserHendler}>
+        let form =  <form onSubmit={this.editUserHendler}>
                 {formElementsArray.map(formElement => (
                     <Input bootstrapModule={bootstrap}
                         keyid={formElement.id} 
@@ -169,9 +170,15 @@ class EditUser extends Component {
                         changed={(event) => this.inputChangedHandler(event, formElement.id)} />
                 ))}
                 <button type="submit" className={[bootstrap.btn, bootstrap['btn-outline-success']].join(' ')} disabled={!this.state.formIsValid}>Submit</button>
-            </form>,
-            <Loader key="Loader" show={this.state.loader} />,
-            <Modal cssModule={bootstrap} key="componentModal" isOpen={this.state.modal} toggle={this.modalToggle}>
+            </form>;
+            return(
+                <React.Fragment>
+                    <Helmet>
+                        <title>Edit User</title>
+                    </Helmet>
+                    {form}
+            <Loader show={this.state.loader} />,
+            <Modal cssModule={bootstrap} isOpen={this.state.modal} toggle={this.modalToggle}>
             <ModalHeader cssModule={bootstrap} toggle={this.modalToggle}>Successfully updated</ModalHeader>
             <ModalBody cssModule={bootstrap}>
             Record has been successfully updated.
@@ -180,10 +187,9 @@ class EditUser extends Component {
                 <Button cssModule={bootstrap} color="primary" onClick={this.modalToggle}>OK</Button>{' '}
             </ModalFooter>
             </Modal>
-			]
+            </React.Fragment>
         );
 
-        return form;
     }
 }
 

@@ -1,10 +1,12 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import Input from '../Input/Input';
 import axios from '../../axios';
 import Loader from '../Loader/Loader';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import withErrorHandler from '../../Hoc/withErrorHandler';
 import bootstrap from '../../scss/bootstrap.scss';
+import {Helmet} from 'react-helmet';
+
 
 
 
@@ -53,30 +55,30 @@ class AddUser extends Component {
                 touched: false
             }
         },
-		loader: false
+        loader: false
     }
 
     modalToggle = () => {
         this.setState({ modal: !this.state.modal });
-      }
+    }
 
     inputChangedHandler = (event, inputIdentifier) => {
         const updatedformConfig = {
             ...this.state.formConfig
         };
-        const updatedFormElement = { 
+        const updatedFormElement = {
             ...updatedformConfig[inputIdentifier]
         };
         updatedFormElement.value = event.target.value;
         updatedFormElement.valid = this.checkValidity(updatedFormElement.value, updatedFormElement.validation);
         updatedFormElement.touched = true;
         updatedformConfig[inputIdentifier] = updatedFormElement;
-        
+
         let formIsValid = true;
         for (let inputIdentifier in updatedformConfig) {
             formIsValid = updatedformConfig[inputIdentifier].valid && formIsValid;
         }
-        this.setState({formConfig: updatedformConfig, formIsValid: formIsValid});
+        this.setState({ formConfig: updatedformConfig, formIsValid: formIsValid });
     }
 
     checkValidity(value, rules) {
@@ -84,7 +86,7 @@ class AddUser extends Component {
         if (!rules) {
             return true;
         }
-        
+
         if (rules.required) {
             isValid = value.trim() !== '' && isValid;
         }
@@ -112,28 +114,28 @@ class AddUser extends Component {
 
     addUserHendler = (e) => {
         e.preventDefault();
-		this.setState({loader: true});
+        this.setState({ loader: true });
         let dataToPost = {};
         Object.keys(this.state.formConfig).map(fKey => {
-            dataToPost[fKey] = this.state.formConfig[fKey].value;  
+            dataToPost[fKey] = this.state.formConfig[fKey].value;
             return null;
         });
         axios.post('/users.json', dataToPost).then(responce => {
-            if(responce.status === 200) {
-                const formCopy = {...this.state.formConfig}
+            if (responce.status === 200) {
+                const formCopy = { ...this.state.formConfig }
                 Object.keys(formCopy).forEach(userKey => {
                     formCopy[userKey].value = '';
                 });
-                this.setState({formConfig: formCopy, loader: false, modal: true});
+                this.setState({ formConfig: formCopy, loader: false, modal: true });
             }
-			
-		}).catch((error) => {
+
+        }).catch((error) => {
             console.log(error);
-            this.setState({loader: false}); 
+            this.setState({ loader: false });
         });
     }
-    render(){
-       
+    render() {
+
 
         const formElementsArray = [];
         for (let key in this.state.formConfig) {
@@ -142,35 +144,40 @@ class AddUser extends Component {
                 config: this.state.formConfig[key]
             });
         }
-        let form = ([ <form key="formElement" onSubmit={this.addUserHendler}>
-                {formElementsArray.map(formElement => (
-                    <Input bootstrapModule={bootstrap}
-                        keyid={formElement.id} 
-                        key={formElement.id}
-                        elementType={formElement.config.elementType}
-                        elementConfig={formElement.config.elementConfig}
-                        value={formElement.config.value}
-                        invalid={!formElement.config.valid}
-                        shouldValidate={formElement.config.validation}
-                        touched={formElement.config.touched}
-                        changed={(event) => this.inputChangedHandler(event, formElement.id)} />
-                ))}
-                <button type="submit" className={[bootstrap.btn, bootstrap['btn-outline-success']].join(' ')} disabled={!this.state.formIsValid}>Submit</button>
-            </form>,
-            <Loader key="Loader" show={this.state.loader} />,
-            <Modal cssModule={bootstrap} key="componentModal" isOpen={this.state.modal} toggle={this.modalToggle}>
-            <ModalHeader cssModule={bootstrap} toggle={this.modalToggle}>successfully added</ModalHeader>
-            <ModalBody cssModule={bootstrap} >
-                    Record has been successfully added.
+        const form = <form onSubmit={this.addUserHendler}>
+            {formElementsArray.map(formElement => (
+                <Input bootstrapModule={bootstrap}
+                    keyid={formElement.id}
+                    key={formElement.id}
+                    elementType={formElement.config.elementType}
+                    elementConfig={formElement.config.elementConfig}
+                    value={formElement.config.value}
+                    invalid={!formElement.config.valid}
+                    shouldValidate={formElement.config.validation}
+                    touched={formElement.config.touched}
+                    changed={(event) => this.inputChangedHandler(event, formElement.id)} />
+            ))}
+            <button type="submit" className={[bootstrap.btn, bootstrap['btn-outline-success']].join(' ')} disabled={!this.state.formIsValid}>Submit</button>
+        </form>;
+        return (
+            <React.Fragment>
+                <Helmet>
+                    <title>Add User</title>
+                    </Helmet>
+                {form}
+                <Loader show={this.state.loader} />
+                <Modal cssModule={bootstrap} key="componentModal" isOpen={this.state.modal} toggle={this.modalToggle}>
+                    <ModalHeader cssModule={bootstrap} toggle={this.modalToggle}>successfully added</ModalHeader>
+                    <ModalBody cssModule={bootstrap} >
+                        Record has been successfully added.
             </ModalBody>
-            <ModalFooter cssModule={bootstrap} >
-                <Button cssModule={bootstrap} color="primary" onClick={this.modalToggle}>OK</Button>{' '}
-            </ModalFooter>
-            </Modal>
-			]
+                    <ModalFooter cssModule={bootstrap} >
+                        <Button cssModule={bootstrap} color="primary" onClick={this.modalToggle}>OK</Button>{' '}
+                    </ModalFooter>
+                </Modal>
+            </React.Fragment>
         );
 
-        return form;
     }
 }
 

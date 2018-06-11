@@ -3,7 +3,7 @@ import { Table } from 'reactstrap';
 import axios from '../../axios.js';
 import Loader from '../Loader/Loader';
 import withErrorHandler from '../../Hoc/withErrorHandler';
-
+import {Helmet} from 'react-helmet';
 import bootstrap from '../../scss/bootstrap.scss';
 
 class UserList extends Component {
@@ -47,7 +47,10 @@ class UserList extends Component {
 
 	render(){
 	return(
-	<div>
+	<React.Fragment>
+    <Helmet>
+      <title>User List</title>
+    </Helmet>
 		<Table cssModule={bootstrap}>
             <thead>
               <tr>
@@ -69,7 +72,7 @@ class UserList extends Component {
             </tbody> : null}
           </Table>
 		  <Loader show={this.state.loader} />
-		  </div>
+		  </React.Fragment>
 	);
 	}
 }

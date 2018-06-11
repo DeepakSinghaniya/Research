@@ -1,8 +1,13 @@
 import React from 'react';
+import {Helmet} from 'react-helmet';
+
 
 const home = (porps) => {
     return (
         <div>
+            <Helmet>
+            <title>Home</title>
+            </Helmet>
             <h2>Headings</h2>
             <h1>Header one</h1>
             <h2>Header two</h2>
