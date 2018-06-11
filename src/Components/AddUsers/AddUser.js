@@ -4,6 +4,7 @@ import axios from '../../axios';
 import Loader from '../Loader/Loader';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import withErrorHandler from '../../Hoc/withErrorHandler';
+import bootstrap from '../../scss/bootstrap.scss';
 
 
 
@@ -143,7 +144,7 @@ class AddUser extends Component {
         }
         let form = ([ <form key="formElement" onSubmit={this.addUserHendler}>
                 {formElementsArray.map(formElement => (
-                    <Input bootstrapModule={this.props.bootstrapModule}
+                    <Input bootstrapModule={bootstrap}
                         keyid={formElement.id} 
                         key={formElement.id}
                         elementType={formElement.config.elementType}
@@ -154,16 +155,16 @@ class AddUser extends Component {
                         touched={formElement.config.touched}
                         changed={(event) => this.inputChangedHandler(event, formElement.id)} />
                 ))}
-                <button type="submit" className={[this.props.bootstrapModule.btn, this.props.bootstrapModule['btn-outline-success']].join(' ')} disabled={!this.state.formIsValid}>Submit</button>
+                <button type="submit" className={[bootstrap.btn, bootstrap['btn-outline-success']].join(' ')} disabled={!this.state.formIsValid}>Submit</button>
             </form>,
             <Loader key="Loader" show={this.state.loader} />,
-            <Modal cssModule={this.props.bootstrapModule} key="componentModal" isOpen={this.state.modal} toggle={this.modalToggle}>
-            <ModalHeader cssModule={this.props.bootstrapModule} toggle={this.modalToggle}>successfully added</ModalHeader>
-            <ModalBody cssModule={this.props.bootstrapModule} >
+            <Modal cssModule={bootstrap} key="componentModal" isOpen={this.state.modal} toggle={this.modalToggle}>
+            <ModalHeader cssModule={bootstrap} toggle={this.modalToggle}>successfully added</ModalHeader>
+            <ModalBody cssModule={bootstrap} >
                     Record has been successfully added.
             </ModalBody>
-            <ModalFooter cssModule={this.props.bootstrapModule} >
-                <Button cssModule={this.props.bootstrapModule} color="primary" onClick={this.modalToggle}>OK</Button>{' '}
+            <ModalFooter cssModule={bootstrap} >
+                <Button cssModule={bootstrap} color="primary" onClick={this.modalToggle}>OK</Button>{' '}
             </ModalFooter>
             </Modal>
 			]

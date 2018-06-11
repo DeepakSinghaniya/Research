@@ -3,7 +3,6 @@ import { Table } from 'reactstrap';
 import axios from '../../axios.js';
 import Loader from '../Loader/Loader';
 import withErrorHandler from '../../Hoc/withErrorHandler';
-import { withRouter } from 'react-router';
 
 import bootstrap from '../../scss/bootstrap.scss';
 
@@ -64,8 +63,8 @@ class UserList extends Component {
                 <td>{this.state.users[userKey].name}</td>
                 <td>{this.state.users[userKey].email}</td>
                 <td>{this.state.users[userKey].age}</td>
-                <td><button className={[this.props.bootstrapModule.btn, this.props.bootstrapModule['btn-outline-danger']].join(' ')} onClick={() => this.deleteRecordHandler(userKey)}>Delete</button></td>
-                <td><button className={[this.props.bootstrapModule.btn, this.props.bootstrapModule['btn-outline-success']].join(' ')} onClick={() => this.editRecordHandler(userKey)}>Edit</button></td>
+                <td><button className={[bootstrap.btn, bootstrap['btn-outline-danger']].join(' ')} onClick={() => this.deleteRecordHandler(userKey)}>Delete</button></td>
+                <td><button className={[bootstrap.btn, bootstrap['btn-outline-success']].join(' ')} onClick={() => this.editRecordHandler(userKey)}>Edit</button></td>
               </tr>)}
             </tbody> : null}
           </Table>
@@ -75,4 +74,4 @@ class UserList extends Component {
 	}
 }
 
-export default withErrorHandler(withRouter(UserList), axios);
+export default withErrorHandler(UserList, axios);

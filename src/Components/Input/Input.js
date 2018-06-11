@@ -1,13 +1,14 @@
 import React from 'react';
 import classes from './Input.scss';
+import bootstrap from '../../scss/bootstrap.scss';
 
 
 const input = (props) => {
     let inputElement = null;
-    const inputClasses = [props.bootstrapModule['form-control']];
+    const inputClasses = [bootstrap['form-control']];
 
     if (props.invalid && props.shouldValidate && props.touched) {
-        inputClasses.push(props.bootstrapModule['is-invalid']);
+        inputClasses.push(bootstrap['is-invalid']);
     }
     switch (props.elementType) {
         case ('input'):
@@ -47,8 +48,8 @@ const input = (props) => {
     }
 	console.log('test');
     return (
-        <div className={[classes.customInput, props.bootstrapModule['form-group']].join(' ')}>
-            <label className={['col-sm-2', props.bootstrapModule['col-form-label']].join(' ')}>{props.elementConfig.placeholder}</label>
+        <div className={[classes.customInput, bootstrap['form-group']].join(' ')}>
+            <label className={['col-sm-2', bootstrap['col-form-label']].join(' ')}>{props.elementConfig.placeholder}</label>
             {inputElement}
         </div>
     );

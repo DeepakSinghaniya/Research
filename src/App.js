@@ -52,17 +52,17 @@ class App extends Component {
     return (
       <div className="App">
 
-        <Header bootstrapModule={Bootstrap} />
+        <Header/>
         <div className="content">
           <Container cssModule={Bootstrap}  >
             <Row cssModule={Bootstrap}>
               <Col cssModule={Bootstrap} xs={12}>
 
                 <Switch>
-                  <Route exact path='/' render={() => <HomeLoadable bootstrapModule={Bootstrap} />} />
-                  <Route path='/user-list' render={() => <UserListLoadable bootstrapModule={Bootstrap} />} />
-                  <Route path='/add-user' render={() => <AddUserLoadable bootstrapModule={Bootstrap} />} />
-                  <Route path="/edit/:id" render={() => <EditUserLoadable bootstrapModule={Bootstrap} />} />
+                  <Route exact path='/' component={HomeLoadable} />
+                  <Route path='/user-list' component={UserListLoadable} />
+                  <Route path='/add-user' component={AddUserLoadable} />
+                  <Route path="/edit/:id" component={EditUserLoadable} />
                 </Switch>
 
               </Col>
@@ -70,7 +70,7 @@ class App extends Component {
           </Container>
         </div>
 
-        <Footer bootstrapModule={Bootstrap} />
+        <Footer/>
 
       </div>
     );

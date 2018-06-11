@@ -4,7 +4,7 @@ import axios from '../../axios';
 import Loader from '../Loader/Loader';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import withErrorHandler from '../../Hoc/withErrorHandler';
-import { withRouter } from 'react-router'
+import bootstrap from '../../scss/bootstrap.scss';
 
 
 class EditUser extends Component {
@@ -157,7 +157,7 @@ class EditUser extends Component {
         }
         let form = ([ <form key="formElement" onSubmit={this.editUserHendler}>
                 {formElementsArray.map(formElement => (
-                    <Input bootstrapModule={this.props.bootstrapModule}
+                    <Input bootstrapModule={bootstrap}
                         keyid={formElement.id} 
                         key={formElement.id}
                         elementType={formElement.config.elementType}
@@ -168,16 +168,16 @@ class EditUser extends Component {
                         touched={formElement.config.touched}
                         changed={(event) => this.inputChangedHandler(event, formElement.id)} />
                 ))}
-                <button type="submit" className={[this.props.bootstrapModule.btn, this.props.bootstrapModule['btn-outline-success']].join(' ')} disabled={!this.state.formIsValid}>Submit</button>
+                <button type="submit" className={[bootstrap.btn, bootstrap['btn-outline-success']].join(' ')} disabled={!this.state.formIsValid}>Submit</button>
             </form>,
             <Loader key="Loader" show={this.state.loader} />,
-            <Modal cssModule={this.props.bootstrapModule} key="componentModal" isOpen={this.state.modal} toggle={this.modalToggle}>
-            <ModalHeader cssModule={this.props.bootstrapModule} toggle={this.modalToggle}>Successfully updated</ModalHeader>
-            <ModalBody cssModule={this.props.bootstrapModule}>
+            <Modal cssModule={bootstrap} key="componentModal" isOpen={this.state.modal} toggle={this.modalToggle}>
+            <ModalHeader cssModule={bootstrap} toggle={this.modalToggle}>Successfully updated</ModalHeader>
+            <ModalBody cssModule={bootstrap}>
             Record has been successfully updated.
             </ModalBody>
-            <ModalFooter cssModule={this.props.bootstrapModule}>
-                <Button cssModule={this.props.bootstrapModule} color="primary" onClick={this.modalToggle}>OK</Button>{' '}
+            <ModalFooter cssModule={bootstrap}>
+                <Button cssModule={bootstrap} color="primary" onClick={this.modalToggle}>OK</Button>{' '}
             </ModalFooter>
             </Modal>
 			]
@@ -187,4 +187,4 @@ class EditUser extends Component {
     }
 }
 
-export default withErrorHandler(withRouter(EditUser), axios);
+export default withErrorHandler(EditUser, axios);
