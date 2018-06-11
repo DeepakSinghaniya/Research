@@ -11,7 +11,9 @@ class UserList extends Component {
 	  state = {
 		users:null,
 		loader: true
-	  }
+    }
+    
+    
   
 	componentDidMount(){
      axios.get('/users.json').then(responce => { 
