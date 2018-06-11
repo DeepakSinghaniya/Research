@@ -6,11 +6,27 @@ const initialState = {
 }
 
 const usersListReduser = (state = initialState, action) => {
-    switch (action) {
+    switch (action.type) {
         case actionTypes.GETUSERS:
-            state.users = action.payLoad;
-            state.loader = action.loader;
-            return state;
+            const stateCopy = { ...state };
+            stateCopy.users = action.payLoad;
+            stateCopy.loader = action.loader;
+            return stateCopy;
+
+        case (actionTypes.DELETEUSER):
+            const stateToDeleteUser = { ...state };
+            const stateUsers = { ...stateToDeleteUser.users };
+            delete stateUsers[action.id];
+            stateToDeleteUser.users = stateUsers;
+            stateToDeleteUser.loader = false;
+            return stateToDeleteUser;
+
+        case actionTypes.HIDELOADER:
+            return { ...state, loader: false };
+
+        case actionTypes.SHOWLOADER:
+            console.log('show Loader');
+            return { ...state, loader: true };
 
         default:
             return state;
