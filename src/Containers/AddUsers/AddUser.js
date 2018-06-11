@@ -5,6 +5,8 @@ import Loader from '../../Components/Loader/Loader';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import withErrorHandler from '../../Hoc/withErrorHandler';
 import bootstrap from '../../assets/scss/bootstrap.scss';
+import {connect} from 'react-redux';
+import * as Actions from '../../Store/Actions';
 import {Helmet} from 'react-helmet';
 
  
@@ -123,6 +125,7 @@ class AddUser extends Component {
         });
         axios.post('/users.json', dataToPost).then(responce => {
             if (responce.status === 200) {
+                this.props.addUser(responce.data.name,  dataToPost);
                 const formCopy = { ...this.state.formConfig }
                 Object.keys(formCopy).forEach(userKey => {
                     formCopy[userKey].value = '';
@@ -182,4 +185,10 @@ class AddUser extends Component {
     }
 }
 
-export default withErrorHandler(AddUser, axios);
+const mapPropsToStore = dispatch => {
+    return {
+        addUser: (id, data) => dispatch(Actions.addUser(id, data))
+    }
+}
+
+export default connect(null, mapPropsToStore)(withErrorHandler(AddUser, axios));

@@ -46,3 +46,8 @@ export const deleteUser = (id) => {
         });
     }
 }
+
+
+export const addUser = (id, data) => {
+    return {type: actionTypes.ADDUSER, id, data}
+}

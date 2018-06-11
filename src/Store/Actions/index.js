@@ -1,1 +1,1 @@
-export {fatchUser,hideLoader, deleteUser} from './userList';
+export {fatchUser,hideLoader, deleteUser, addUser} from './userList';

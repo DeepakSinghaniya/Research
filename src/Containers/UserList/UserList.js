@@ -12,25 +12,14 @@ import {Helmet} from 'react-helmet';
 
 class UserList extends Component {
 	componentDidMount(){
-    this.props.getUsers();
- 
-     
+    if(!this.props.users) {
+      this.props.getUsers();
+    }
+    
   }
   deleteRecordHandler = (id) => {
     this.props.deleteUser(id);
-	  // this.setState({loader: true});
-    // axios.delete('/users/'+id+'.json').then(responce =>{
-    //   console.log(responce);
-    //   if(responce.status === 200) {
-		//   const users = {...this.props.users}
-		//   delete users[id];
-		// 	this.setState({users: users, loader: false});
-	  // } else {
-    //   this.setState({loader: false});
-    // }
-    // }).catch(error => {
-      
-    // });
+
   }
   
   editRecordHandler = (id) => {

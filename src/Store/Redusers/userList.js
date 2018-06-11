@@ -13,7 +13,7 @@ const usersListReduser = (state = initialState, action) => {
             stateCopy.loader = action.loader;
             return stateCopy;
 
-        case (actionTypes.DELETEUSER):
+        case actionTypes.DELETEUSER:
             const stateToDeleteUser = { ...state };
             const stateUsers = { ...stateToDeleteUser.users };
             delete stateUsers[action.id];
@@ -21,11 +21,15 @@ const usersListReduser = (state = initialState, action) => {
             stateToDeleteUser.loader = false;
             return stateToDeleteUser;
 
+        case actionTypes.ADDUSER:
+        const stateToAddUser = {...state};
+        stateToAddUser.users = {...stateToAddUser.users, [action.id]: action.data}
+        return stateToAddUser;
+
         case actionTypes.HIDELOADER:
             return { ...state, loader: false };
 
         case actionTypes.SHOWLOADER:
-            console.log('show Loader');
             return { ...state, loader: true };
 
         default:
