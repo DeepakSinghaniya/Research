@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
-import Input from '../Input/Input';
+import Input from '../../Components/Input/Input';
 import axios from '../../axios';
-import Loader from '../Loader/Loader';
+import Loader from '../../Components/Loader/Loader';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import withErrorHandler from '../../Hoc/withErrorHandler';
 import bootstrap from '../../assets/scss/bootstrap.scss';
 import {Helmet} from 'react-helmet';
 
+ 
 
 
 

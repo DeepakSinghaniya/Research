@@ -17,21 +17,21 @@ import Footer from './Components/Footer/Footer';
 
 
 const AddUserLoadable = Loadable({
-  loader: () => import('./Components/AddUsers/AddUser'),
+  loader: () => import('./Containers/AddUsers/AddUser'),
   loading() {
     return <Loader show />
   }
 });
 
 const UserListLoadable = Loadable({
-  loader: () => import('./Components/UserList/UserList'),
+  loader: () => import('./Containers/UserList/UserList'),
   loading() {
     return <Loader show />
   }
 });
 
 const EditUserLoadable = Loadable({
-  loader: () => import('./Components/EditUser/EditUser'),
+  loader: () => import('./Containers/EditUser/EditUser'),
   loading() {
     return <Loader show />
   }

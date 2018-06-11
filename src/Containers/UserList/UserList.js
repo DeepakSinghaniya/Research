@@ -1,10 +1,11 @@
-import React, {Component} from 'react';
+
+import React, { Component } from 'react';
+import axios from '../../axios';
+import Loader from '../../Components/Loader/Loader';
 import { Table } from 'reactstrap';
-import axios from '../../axios.js';
-import Loader from '../Loader/Loader';
 import withErrorHandler from '../../Hoc/withErrorHandler';
-import {Helmet} from 'react-helmet';
 import bootstrap from '../../assets/scss/bootstrap.scss';
+import {Helmet} from 'react-helmet';
 
 class UserList extends Component {
 	  state = {
