@@ -1,2 +1,3 @@
-const nulledWrapper = props => props.children;
+const nulledWrapper = (props) => props.children;
+
 export default nulledWrapper;  
